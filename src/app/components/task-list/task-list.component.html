@@ -53,7 +53,26 @@
         >
           ✕
         </button>
+        <button
+  (click)="showInfo = true"
+  class="mt-4 bg-gray-700 text-white px-4 py-1 rounded hover:bg-gray-800 focus:ring"
+>
+  Info
+</button>
+
       </li>
     }
   </ul>
 </section>
+@if (alertMessage) {
+  <app-alert
+    [message]="alertMessage"
+    [type]="alertType"
+    (closed)="alertMessage = ''"
+  ></app-alert>
+}
+<app-modal [open]="showInfo" title="About Task Tracker" (close)="showInfo = false">
+  <p class="text-gray-700 dark:text-gray-200">
+    Manage your daily tasks efficiently with accessible UI.
+  </p>
+</app-modal>
