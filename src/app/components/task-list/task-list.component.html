@@ -1,0 +1,59 @@
+<section class="max-w-md mx-auto mt-8 p-4 bg-white dark:bg-gray-800 rounded-xl shadow">
+  <h2 class="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">My Tasks</h2>
+
+  <div class="flex gap-2 mb-4">
+    <input [(ngModel)]="newTask" placeholder="New task"
+           class="flex-grow border rounded px-2 py-1"
+           aria-label="New task input" />
+    <button (click)="addTask()" aria-label="Add task"
+      class="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+      Add
+    </button>
+  </div>
+
+  <!-- <ul>
+    <li *ngFor="let task of tasks"
+        class="flex justify-between items-center border-b py-2">
+      <label class="flex items-center">
+        <input type="checkbox" [(ngModel)]="task.completed"
+               (change)="toggle(task.id)" aria-label="Toggle task completion" />
+        <span [class.line-through]="task.completed"
+              class="ml-2 text-gray-800 dark:text-gray-200">
+          {{ task.title }}
+        </span>
+      </label>
+      <button (click)="delete(task.id)" aria-label="Delete task"
+        class="text-red-500 hover:text-red-700 focus:ring focus:ring-red-300 rounded">
+        ✕
+      </button>
+    </li>
+  </ul> -->
+
+  <ul>
+    @for (task of tasks; track task.id) {
+      <li class="flex justify-between items-center border-b py-2">
+        <label class="flex items-center">
+          <input
+            type="checkbox"
+            [(ngModel)]="task.completed"
+            (change)="toggle(task.id)"
+            aria-label="Toggle task completion"
+          />
+          <span
+            [class.line-through]="task.completed"
+            class="ml-2 text-gray-800 dark:text-gray-200"
+          >
+            {{ task.title }}
+          </span>
+        </label>
+        <button
+          (click)="delete(task.id)"
+          aria-label="Delete task"
+          class="text-red-500 hover:text-red-700 focus:ring focus:ring-red-300 rounded"
+        >
+          ✕
+        </button>
+      </li>
+    }
+  </ul>
+</section>
